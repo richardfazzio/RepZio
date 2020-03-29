@@ -1,0 +1,38 @@
+// LESS functions to make css grid easier
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+}
+  
+.grid-row(@value) {
+  -ms-grid-row: @value;
+  grid-row: @value;
+}
+
+.grid-column(@value) {
+  -ms-grid-column: @value;
+  grid-column: @value;
+}
+
+.grid-template-columns(@value) {
+  -ms-grid-columns: @value;
+  grid-template-columns: @value;
+}
+
+.grid-template-rows(@value) {
+  -ms-grid-rows: @value;
+  grid-template-rows: @value;
+}
+
+.grid-column-span(@value1, @value2) {
+  -ms-grid-column: @value1;
+  -ms-grid-column-span: @value2;
+  grid-column: ~"@{value1} / span @{value2}";
+}
+
+.grid-row-span(@value1, @value2) {
+  -ms-grid-row: @value1;
+  -ms-grid-row-span: @value2;
+  grid-row: ~"@{value1} / span @{value2}";
+}
