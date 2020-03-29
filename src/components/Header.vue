@@ -5,6 +5,16 @@
       <img class="company-logo" :src="company.companyLogo" />
       <div class="company-name">{{ company.name }}</div>
       <div class="message" v-html="company.message"></div>
+      <div class="sales-rep">
+        <div class="description">Sales Representative Information: </div>
+        <div class="name"><b>Name</b>: {{ fullName }}</div>
+        <div class="location"><b>Location</b>: {{ location }}</div>
+        <div class="email">
+          Please contact me at
+          <a :href="`mailto:${company.SalesRep.EmailAddress}`">{{ company.SalesRep.EmailAddress }}</a>
+          or call me at {{ company.SalesRep.Phone }}
+        </div>
+      </div>
     </div>
     <div class="border"></div>
   </div>
@@ -15,8 +25,13 @@ export default {
   props: {
     company: Object
   },
-  created: function() {
-    console.log("company", this.company);
+  computed: {
+    location: function() {
+      return `${this.company.SalesRep.City} ${this.company.SalesRep.State}, ${this.company.SalesRep.PostalCode}`;
+    },
+    fullName: function() {
+      return `${this.company.SalesRep.FirstName} ${this.company.SalesRep.LastName}`;
+    }
   }
 };
 </script>
@@ -27,7 +42,7 @@ export default {
 .header {
   .content {
     .grid;
-    .grid-template-rows(20px 40px min-content auto auto 20px);
+    .grid-template-rows(20px 40px min-content auto auto auto 20px);
     .grid-template-columns(20px min-content 10px auto);
 
     .company-logo {
@@ -37,7 +52,8 @@ export default {
     }
 
     .company-name,
-    .message {
+    .message,
+    .sales-rep {
       .grid-column(4);
     }
 
@@ -57,7 +73,7 @@ export default {
       max-width: 100%;
       text-overflow: break-word;
       text-align: center;
-      font-size: 20px;
+      font-size: 16px;
       color: @textColor;
 
       > p {
@@ -65,6 +81,24 @@ export default {
         padding-top: 10px;
         margin: 0;
         text-align: center;
+      }
+    }
+
+    .sales-rep {
+      .grid-row(4);
+      text-align: center;
+
+      .description {
+        color: @titleColor;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .name,
+      .location,
+      .email {
+        color: @textColor;
+        font-size: 16px;
       }
     }
   }

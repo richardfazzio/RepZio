@@ -34,7 +34,8 @@ export default {
     this.companyData = {
       message: data.Message,
       name: data.CompanyName,
-      companyLogo: `http://images.repzio.com/productimages/${data.ManufacturerID}/logo${data.ManufacturerID}_lg.jpg?height=100&width=100`
+      companyLogo: `http://images.repzio.com/productimages/${data.ManufacturerID}/logo${data.ManufacturerID}_lg.jpg?height=100&width=100`,
+      SalesRep: data.SalesRep
     };
   }
 }
